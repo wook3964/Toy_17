@@ -29,22 +29,31 @@ export default function CreatePost() {
     }
    }
   return (
-    <div className='max-w-md mx-auto'>
-        <h2 className='text-2xl font-bold mb-4'>새 글 작성</h2>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input
-            className='border p-2 rounded'
-            placeholder='제목을 입력하세요'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}  // State 업데이트 
-            />
-            <textarea
-            className='border p-2 rounded h-40'
-            placeholder='내용을 입력하세요'
-            value={contents}
-            onChange={(e) => setContents(e.target.value)} // State 업데이트
-            />
-            <button type='submit' className='bg-blue-600 text-white p-2 rounded hover:bg-blue-700'>
+    <div className='max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100'>
+        <h2 className='text-2xl font-bold mb-6 text-gray-800'>새 글 작성</h2>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
+            <div className='flex flex-col gap-2'>
+                <label className='text-sm font-bold text-gray-500 ml-1'>제목</label>
+                <input
+                className='border border-gray-200 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all'
+                placeholder='제목을 입력하세요'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                />
+            </div>
+            <div className='flex flex-col gap-2'>
+                <label className='text-sm font-bold text-gray-500 ml-1'>내용</label>
+                <textarea
+                className='border border-gray-200 p-3 rounded-xl h-48 resize-none focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all'
+                placeholder='내용을 입력하세요'
+                value={contents}
+                onChange={(e) => setContents(e.target.value)}
+                />
+            </div>
+            <button 
+                type='submit' 
+                className='bg-[#6366F1] text-white p-4 rounded-xl font-bold hover:bg-[#4F46E5] transition-all mt-4 shadow-md'
+            >
                 등록하기
             </button>
         </form>
