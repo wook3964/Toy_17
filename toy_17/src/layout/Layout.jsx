@@ -2,8 +2,8 @@ import React from 'react'
 import { Outlet, Link, useLocation } from 'react-router-dom'
 
 export default function Layout() {
-  const location = useLocation();
-  const isHome = location.pathname === '/';
+  const location = useLocation();  // 현재 브라우저 주소창 정보를 가져온다.
+  const isHome = location.pathname === '/';  // 현재 브라우저 주소창 정보가 '/'이면 isHome을 true로 설정한다.
 
   return (
     <div className='min-h-screen flex flex-col bg-[#F0F4FF] font-sans'>
@@ -26,7 +26,7 @@ export default function Layout() {
       </header>
 
       {/* Main Content */}
-      <main className='flex-grow container mx-auto max-w-4xl py-8 px-4'>
+      <main className='grow container mx-auto max-w-4xl py-8 px-4'>
         <Outlet />
       </main>
 

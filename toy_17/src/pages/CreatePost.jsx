@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { useNavigate } from 'react-router-dom'
+import useInput from '../hooks/useInput'
 
 export default function CreatePost() {
     // 제목, 내용 상태관리
-   const [title, setTitle] = useState('')
-   const [contents, setContents] = useState('')
+   const title = useInput('')
+   const contents = useInput('')
    const navigate = useNavigate()  // 글작성후 홈으로 이동시키기 위한 도구
     // 저장 버튼 눌렀을때 실행될 함수
    const handleSubmit = async (e) => {
     e.preventDefault() // 새로고침 방지
     // 데이터 형식
     const newPost = {
-        title: title,
-        contents: contents,
-        date: new Date().toISOString().slice(0, 16).replace('T', ' '),  // 2026-03-23 14:30 이런 형식
+        title: title.value,
+        contents: contents.value,
+        // 2026-03-23 14:30 이런 형식
+        date: new Date().toISOString(),
     }
     // supabase에 저장
     const { error } = await supabase
@@ -22,7 +23,7 @@ export default function CreatePost() {
     .insert([newPost]);
 
     if ( error ) {
-        alert('글쓰기 실패')
+        alert('글쓰기 실패: ' + error.message)
     } else {
         alert('글쓰기 성공!')
         navigate('/')  // 홈으로 이동
@@ -33,21 +34,20 @@ export default function CreatePost() {
         <h2 className='text-2xl font-bold mb-6 text-gray-800'>새 글 작성</h2>
         <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
             <div className='flex flex-col gap-2'>
-                <label className='text-sm font-bold text-gray-500 ml-1'>제목</label>
+                <label className='text-sm font-extrabold text-gray-500 ml-1 text-left'>제목</label>
                 <input
                 className='border border-gray-200 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all'
                 placeholder='제목을 입력하세요'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                {...title}
+                onChange={title.onChange}
                 />
             </div>
             <div className='flex flex-col gap-2'>
-                <label className='text-sm font-bold text-gray-500 ml-1'>내용</label>
+                <label className='text-sm font-extrabold text-gray-500 ml-1 text-left'>내용</label>
                 <textarea
                 className='border border-gray-200 p-3 rounded-xl h-48 resize-none focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all'
                 placeholder='내용을 입력하세요'
-                value={contents}
-                onChange={(e) => setContents(e.target.value)}
+                {...contents}
                 />
             </div>
             <button 

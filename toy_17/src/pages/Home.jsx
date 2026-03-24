@@ -21,7 +21,8 @@ export default function Home() {
     }
 
     useEffect(() => {
-        fetchPosts()
+        const load = async () => { await fetchPosts() }
+        load()
     }, [])
 
     const handleDelete = async (e, id) => {
@@ -73,7 +74,7 @@ export default function Home() {
                                         {post.title}
                                     </h3>
                                     <span className='text-sm text-gray-400 font-medium whitespace-nowrap ml-4'>
-                                        {post.date}
+                                        {post.date.slice(0, 16).replace('T', ' ')}
                                     </span>
                                 </div>
                                 <p className='text-gray-600 line-clamp-2 leading-relaxed'>
