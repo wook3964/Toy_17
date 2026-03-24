@@ -1,0 +1,13 @@
+{
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    "커밋 메시지는 반드시 한국어로 작성해 주세요.",
+    "변경 내용을 명확하고 간결하게 설명해 주세요."
+  ],
+  "gitlens.ai.prompt.commonInstructions": "커밋 메시지는 반드시 한국어로 작성해 주세요.",
+  "github.copilot.chat.generateCommitMessages.customInstructions": [
+     "커밋 메시지는 반드시 한국어로 작성해 주세요."
+  ],
+  "git-commit-message.language": "Korean",
+  "aicommit.language": "Korean",
+  "ai-commit-message.language": "Korean"
+}
